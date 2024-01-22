@@ -14,7 +14,7 @@
 <body>
 	<h1 id="signUp"><b>회 원 가 입</b></h1>
 	<form action="insert.do" onsubmit="return emptyError();">
-		아이디 : <input type="text" name="id" id="id">
+		아이디 : <input type="text" name="id" id="id"/>
 		<span class="error-message" id="id-error"></span> <br>
 
 		패스워드 : <input type="password" name="pw" id="pw">
@@ -94,7 +94,7 @@ function emptyError() {
     }
     // 회원가입완료시
     alert("회원가입 완료");
-    window.close();
+    //window.close();
     
 
     return true;
