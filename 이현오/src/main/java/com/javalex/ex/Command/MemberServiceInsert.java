@@ -18,9 +18,9 @@ public class MemberServiceInsert implements MemberService {
 		String pw=request.getParameter("pw");
 		String name=request.getParameter("name");
 		String hp=request.getParameter("hp");
-		String emailId=request.getParameter("emailId");
-		String emailDomain = request.getParameter("eamilDomain");
-		String email= emailId+emailDomain;
+		String emailId=request.getParameter("email_id");
+		String emailDomain = request.getParameter("email_domain");
+		String email=  emailId + "@" + emailDomain;
 		dao.MemberInsert(id, pw, name,hp, email);
 		
 		return dto;

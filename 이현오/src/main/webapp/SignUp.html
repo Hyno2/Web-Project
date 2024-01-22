@@ -14,11 +14,11 @@
 <body>
 	<h1 id="signUp"><b>회 원 가 입</b></h1>
 	<form action="insert.do" onsubmit="return emptyError();">
-		아이디 : <input type="text" name="id" id="id"/>
+		아이디 : <input type="text" name="id" id="id" />
 		<span class="error-message" id="id-error"></span> <br>
 
 		패스워드 : <input type="password" name="pw" id="pw">
-		 <span class="error-message" id="pw-error"></span> <br>
+		<span class="error-message" id="pw-error"></span> <br>
 
 		이름 : <input type="text" name="name" id="name">
 		<span class="error-message" id="name-error"></span> <br>
@@ -26,9 +26,9 @@
 		핸드폰: <input type="tel" name="hp" id="hp"> (-제외하고입력해주세요)
 		<span class="error-message" id="hp-error"></span> <br>
 
-		이메일 : <input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" /> @
-		<input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" />
-		<select class="select" title="이메일 도메인 주소 선택" onchange="setEmailDomain(this.value);">
+		이메일 : <input type="text" name="email_id" id="email_id" class="form_w200" value="" title="이메일 아이디" /> @
+		<input type="text"  id="email_domain" class="form_w200" value="" title="이메일 도메인" />
+		<select class="select" id="email_domain" name="email_domain" title="이메일 도메인 주소 선택" onchange="setEmailDomain(this.value);">
 			<option value="custom">직접입력</option>
 			<option value="naver.com">naver.com</option>
 			<option value="gmail.com">gmail.com</option>
@@ -40,66 +40,77 @@
 		<span class="error-message" id="email-error"></span>
 		<input type="submit" value="가입 완료">
 	</form>
-	
-<!-- 회원가입할때 메소드들-->
+
+	<!-- 회원가입할때 메소드들-->
 	<script>
 		// 회원가입시 이메일 도메인부분에 옵션클릭하면 자동으로 입력되고, 직접입력할수있는 기능이있는 메소드
-function setEmailDomain(select_Value) {
-    var emailDomainInput = document.getElementById("email_domain");
+		function setEmailDomain(select_Value) {
+			let emailDomainInput = document.getElementById("email_domain");
+			let emailDomainInput2 = document.getElementById("email_domain")
 
-    if (select_Value === "custom") {
-        // 직접입력 옵션 선택 시 도메인 입력란을 활성화
-        emailDomainInput.disabled = false;
-        emailDomainInput.value = ""; // 이전에 선택한 도메인 값 초기화
-    } else {
-        // 다른 옵션 선택 시 도메인 입력란을 비활성화하고 선택한 도메인으로 설정
-        emailDomainInput.disabled = true;
-        emailDomainInput.value = select_Value;
-    }
-}
+			if (select_Value === "custom") {
+				// 직접입력 옵션 선택 시 도메인 입력란을 활성화
+				emailDomainInput.disabled = false;
+				emailDomainInput.value = ""; // 이전에 선택한 도메인 값 초기화
+			} else {
+				// 다른 옵션 선택 시 도메인 입력란을 비활성화하고 선택한 도메인으로 설정
+				emailDomainInput.disabled = true;
+				emailDomainInput.value = select_Value;
+			}
+		}
 
-// 회원가입시 빈칸있으면 빈칸에 따라 에러메세지 출력하는 메소드
-function emptyError() {
-    var idInput = document.getElementById("id");
-    var pwInput = document.getElementById("pw");
-    var nameInput = document.getElementById("name");
-    var hpInput = document.getElementById("hp");
-    var emailIdInput = document.getElementById("email_id");
-    var emailDomainInput = document.getElementById("email_domain");
+		// 회원가입시 빈칸있으면 빈칸에 따라 에러메세지 출력하는 메소드
+		function emptyError() {
+			let idInput = document.getElementById("id");
+			let pwInput = document.getElementById("pw");
+			let nameInput = document.getElementById("name");
+			let hpInput = document.getElementById("hp");
+			let emailIdInput = document.getElementById("email_id");
+			let emailDomainInput = document.getElementById("email_domain");
+			
+			
 
-    // 빈칸 체크를 수행하고, 필요한 경우 에러 메시지를 표시
-    if (!idInput.value) {
-        alert("아이디를 입력해주세요.");
-        return false;
-    }
+			// 이메일 아이디와 도메인을 합쳐서 새로운 입력란에 저장
+			let email = document.createElement("input");
+			email.type = "hidden";
+			email.name = "email";
+			email.value = emailIdInput.value + "@" + emailDomainInput.value;
 
-    if (!pwInput.value) {
-        alert("비밀번호를 입력해주세요.");
-        return false;
-    }
+			// form에 새로운 입력란 추가
+			document.forms[0].appendChild(email);
 
-    if (!nameInput.value) {
-        alert("이름을 입력해주세요.");
-        return false;
-    }
+			// 빈칸 체크를 수행하고, 필요한 경우 에러 메시지를 표시
+			if (!idInput.value) {
+				alert("아이디를 입력해주세요.");
+				return false;
+			}
 
-    if (!hpInput.value) {
-        alert("전화번호를 입력해주세요.");
-        return false;
-    }
+			if (!pwInput.value) {
+				alert("비밀번호를 입력해주세요.");
+				return false;
+			}
 
-    if (!emailIdInput.value || !emailDomainInput.value) {
-        alert("이메일을 입력해주세요.");
-        return false;
-    }
-    // 회원가입완료시
-    alert("회원가입 완료");
-    //window.close();
-    
+			if (!nameInput.value) {
+				alert("이름을 입력해주세요.");
+				return false;
+			}
 
-    return true;
-}
-		
+			if (!hpInput.value) {
+				alert("전화번호를 입력해주세요.");
+				return false;
+			}
+
+			if (!emailIdInput.value || !emailDomainInput.value) {
+				alert("이메일을 입력해주세요.");
+				return false;
+			}
+
+			// 회원가입 완료 시
+			alert("회원가입 완료");
+
+			return true;
+		}
+
 	</script>
 
 </body>
