@@ -1,0 +1,17 @@
+<div class="banner_section layout_padding">
+		<div class="container">
+			<h1 class="best_taital">대구·경북 최고의 구직 플랫폼</h1>
+			<div class="box_main">
+				<!-- day0122 수정 검색할 때 결과가 사람인 페이지로 전달-->
+			    <!--  <input type="" class="email_bt" placeholder="Search Job" name="">-->
+			    <input type="text" id="search_result" onkeyup="if(window.event.keyCode==13){search()}" class="email_bt" placeholder="Search Job">
+			    <button class="subscribe_bt" onclick="search()">검색하기</button>
+				<!-- <button class="subscribe_bt"><a href="https://www.saramin.co.kr/zf_user/">검색하기</a></button> -->
+				
+		    </div>
+		    <p class="there_text">나에게 딱 맞는 커리어만 매치! 경북인에서 새로운 기회를 제안 받고 기업정보, 연봉정보, 면접후기 등 취업, 채용에 꼭 필요한 정보를 확인해보세요.</p>
+		    <div class="bt_main">
+		    	<div class="discover_bt"><a href="#">더 알아보기</a></div>
+		    </div>
+		</div>
+	</div>
