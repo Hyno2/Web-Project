@@ -39,7 +39,7 @@ html {
 body {
      color: #666666;
      font-size: 14px;
-     font-family: Poppins;
+     font-family: 'G마켓 산스 Medium';
      line-height: 1.80857;
      font-weight: normal;
      overflow-x: hidden;
@@ -474,7 +474,7 @@ button {
 }
 
 .copyright_text {
-    width: 100%;
+    width: 200%;
     float: left;
     font-size: 16px;
     color: #111111;
@@ -500,8 +500,7 @@ button {
 }
 
 .logo_1{
-     width: 100%;
-     float: left;
+	width:100%;
      text-align: center;
 }
 
@@ -757,7 +756,7 @@ figure:hover+span {
 .many_main {
     width: 88%;
     float: left;
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
     color: #000;
     margin-top: 0;
@@ -1051,5 +1050,3 @@ input.btn_main_3::placeholder {
     border-radius: 30px;
     margin-top: 20px;
 }
-
-
