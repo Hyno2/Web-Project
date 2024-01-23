@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javalex.ex.Session.SessionUtil;
 import com.javalex.ex.DAO.MemberDAO;
 import com.javalex.ex.DTO.MemberDTO;
 
@@ -20,10 +21,12 @@ public class MemberServiceLogin implements MemberService{
 		
 		System.out.print("로그인 테스트 결과: ");
 		if(tf==true) {
-			System.out.println("성공하였습니다.");
+			// 로그인 성공시 세션에 사용자 정보 저장
+			SessionUtil.setLoginId(request, id);	
+			System.out.println("로그인 성공.");
 		}
 		else {
-			System.out.println("실패하였습니다.");
+			System.out.println("로그인 실패.");
 		}
 		
 		return dto;

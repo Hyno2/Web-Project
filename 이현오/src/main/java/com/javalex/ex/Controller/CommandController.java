@@ -9,12 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.javalex.ex.Command.MemberService;
-import com.javalex.ex.Command.MemberServiceDelete;
-import com.javalex.ex.Command.MemberServiceInsert;
-import com.javalex.ex.Command.MemberServiceLogin;
-import com.javalex.ex.Command.MemberServiceSelect;
+import com.javalex.ex.Command.*;
+import com.javalex.ex.Session.*;
 import com.javalex.ex.DTO.MemberDTO;
 
 /**
@@ -69,7 +67,23 @@ public class CommandController extends HttpServlet {
 		if(command.equals("/login.do")) {
 			System.out.println("로그인 테스트중...");
 			mService = new MemberServiceLogin();
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			
+			// 로그인이 성공했을 때만 로그인 상태를 세션에 저장
+            HttpSession session = request.getSession();
+            boolean loggedIn = session.getAttribute("loggedIn") != null
+                    && (boolean) session.getAttribute("loggedIn");
+
+            if (loggedIn) {
+                // 로그인 성공한 경우에만 로그인 상태를 세션에 저장
+                session.setAttribute("loggedIn", true);
+            }
+			
 		}
+		
+		
+		
 		if(command.equals("/select.do")) {
 			System.out.println("회원 전체 출력을 수행합니다.");
 			mService = new MemberServiceSelect();
@@ -77,6 +91,6 @@ public class CommandController extends HttpServlet {
 		
 		mService.execute(request, response);
 		
-		response.sendRedirect("index.html");
+		//response.sendRedirect("index.html");
 	}
 }
