@@ -15,3 +15,10 @@
 		    </div>
 		</div>
 	</div>
+
+하단
+<!-- Javascript files--> 에
+
+추가
+<script src="js/searchResult.js"></script>
+
