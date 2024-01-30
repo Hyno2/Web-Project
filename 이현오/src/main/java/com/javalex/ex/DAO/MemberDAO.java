@@ -197,50 +197,39 @@ public class MemberDAO {
 		return result;
 	}
 	
-	// 아이디 찾기
-	public ArrayList<MemberDTO> IdSearch(String name, String hp, HttpServletRequest request, HttpServletResponse response) {
-	    ArrayList<MemberDTO> resultList = new ArrayList<>();
+	// 아이디 찾기 
+	public String searchId(String name, String hp) {
+        conn = null;
+        ps = null;
+        rs = null;
+        String id = null;
 
-	    try {
-	        conn = ds.getConnection();
+        try {
+            conn = ds.getConnection();
+            String query = "SELECT id FROM user WHERE name=? AND hp=?";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, hp);
+            rs = ps.executeQuery();
 
-	        // 이름 또는 휴대폰 번호가 빈 칸인 경우 처리
-	        if (name == null || name.isEmpty() || hp == null || hp.isEmpty()) {
-	            // 빈 칸이 있는 경우에 대한 처리 (예: 적절한 메시지 설정)
-	            System.out.println("이름 또는 휴대폰 번호가 입력되지 않았습니다.");
-	        } else {
-	            String query = "SELECT id FROM user WHERE name=? AND hp=?";
-	            ps = conn.prepareStatement(query);
-	            ps.setString(1, name);
-	            ps.setString(2, hp);
-	            rs = ps.executeQuery();
+            if (rs.next()) {
+                id = rs.getString("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
 
-	            while (rs.next()) {
-	                // 검색 결과가 있을 때 MemberDTO 객체를 생성하여 resultList에 추가
-	                MemberDTO member = new MemberDTO();
-	                member.setId(rs.getString("id"));
-	                resultList.add(member);
-	            }
-
-	            if (resultList.isEmpty()) {
-	                // 검색 결과가 없는 경우에 대한 처리 (예: 적절한 메시지 설정)
-	                System.out.println("일치하는 아이디 없음");
-	            }
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        try {
-	            conn.close();
-	            ps.close();
-	            rs.close();
-	        } catch (Exception e2) {
-	            e2.printStackTrace();
-	        }
-	    }
-
-	    return resultList;
-	}
+        return id;
+    }
+	
 	
 	// 비밀번호 찾기 
 	public String searchPw(String id, String name) {

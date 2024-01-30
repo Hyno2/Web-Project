@@ -97,25 +97,31 @@ public class CommandController extends HttpServlet {
 		}
 		
 		
-		// 아이디찾기
+//		// 아이디찾기
+//		if (command.equals("/searchID.do")) {
+//		    System.out.println("회원 아이디를 찾는 중입니다...");
+//		    mService = new MemberServiceSearchId();
+//		    ArrayList<MemberDTO> resultList = mService.execute(request, response);
+//
+//		    // 결과가 있다면 클라이언트로 전송
+//		    if (resultList != null && !resultList.isEmpty()) {
+//		        // 여기서 추가적인 처리를 하고 싶다면 추가 가능
+//		        // 예: 첫 번째 아이디만 사용하거나, 특정 필드만 사용하는 등
+//		        // 클라이언트에서는 단순히 결과가 있다는 사실만 알려주면 됨
+//		    	String foundId = resultList.get(0).getId();
+//		        response.getWriter().write(foundId);
+//		        
+//		    } else {
+//		        // 결과가 없는 경우에 대한 응답
+//		        response.getWriter().write("No matching IDs found.");
+//		    }
+//		}
+		// 아이디 찾기 테스트
 		if (command.equals("/searchID.do")) {
-		    System.out.println("회원 아이디를 찾는 중입니다...");
+		    System.out.println("아이디찾기 찾기 중...");
 		    mService = new MemberServiceSearchId();
-		    ArrayList<MemberDTO> resultList = mService.execute(request, response);
-
-		    // 결과가 있다면 클라이언트로 전송
-		    if (resultList != null && !resultList.isEmpty()) {
-		        // 여기서 추가적인 처리를 하고 싶다면 추가 가능
-		        // 예: 첫 번째 아이디만 사용하거나, 특정 필드만 사용하는 등
-		        // 클라이언트에서는 단순히 결과가 있다는 사실만 알려주면 됨
-		    	String foundId = resultList.get(0).getId();
-		        response.getWriter().write(foundId);
-		        
-		    } else {
-		        // 결과가 없는 경우에 대한 응답
-		        response.getWriter().write("No matching IDs found.");
-		    }
 		}
+		
 		// 비밀번호 찾기
 		if (command.equals("/searchPW2.do")) {
 		    System.out.println("비밀번호 찾기 중...");
