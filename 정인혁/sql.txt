@@ -5,3 +5,8 @@ CREATE TABLE user(
     hp varchar(50),
     email varchar(255) UNIQUE
 );
+
+server.xml 들가서
+<Context docBase="Web_Project" path="/Web_Project" reloadable="true" source="org.eclipse.jst.jee.server:Web_Project">
+      	<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" name="jdbc/mysql" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/web" username="root"/>
+이거 해줘야함 프로젝트명은 자기꺼맞게끔
