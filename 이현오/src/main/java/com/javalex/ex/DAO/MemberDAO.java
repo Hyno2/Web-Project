@@ -7,6 +7,9 @@ import com.javalex.ex.DTO.MemberDTO;
 
 import java.util.*;
 import javax.naming.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class MemberDAO {
 	private Connection conn = null;
@@ -27,6 +30,7 @@ public class MemberDAO {
 		}
 	}
 	
+	// 회원가입
 	public void MemberInsert(String id, String pw, String name, String hp, String email) {
 		conn = null;
 		ps = null;
@@ -58,7 +62,7 @@ public class MemberDAO {
 			}
 		}
 	}
-	
+	// 멤버 삭제 아직안쓰는중 마이페이지에 쓰일예정?
 	public void MemberDelete(String id) {
 		conn = null;
 		ps = null;
@@ -85,6 +89,7 @@ public class MemberDAO {
 		}
 	}
 	
+	// 멤버 조회 아직안쓰는중임
 	public ArrayList<MemberDTO> MemberSelect(){
 		ArrayList<MemberDTO> result=new ArrayList<MemberDTO>();
 		conn=null;
@@ -125,6 +130,7 @@ public class MemberDAO {
 		return result;
 	}
 	
+	// 로그인기능
 	public boolean MemberLogin(String id, String pw) {
 		conn=null;
 		ps=null;
@@ -157,4 +163,116 @@ public class MemberDAO {
 			}
 		}
 	}
+	
+	public int selectAllId(String id) {
+		int result = -1;
+		conn=null;
+		ps=null;
+		rs=null;
+		
+		try {
+			conn=ds.getConnection();
+			
+			String query = "SELECT id from user where id=?";
+			ps=conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				result=1;
+			}
+			else {
+				result=0;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+				ps.close();
+				rs.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	// 아이디 찾기
+	public ArrayList<MemberDTO> IdSearch(String name, String hp, HttpServletRequest request, HttpServletResponse response) {
+	    ArrayList<MemberDTO> resultList = new ArrayList<>();
+
+	    try {
+	        conn = ds.getConnection();
+
+	        // 이름 또는 휴대폰 번호가 빈 칸인 경우 처리
+	        if (name == null || name.isEmpty() || hp == null || hp.isEmpty()) {
+	            // 빈 칸이 있는 경우에 대한 처리 (예: 적절한 메시지 설정)
+	            System.out.println("이름 또는 휴대폰 번호가 입력되지 않았습니다.");
+	        } else {
+	            String query = "SELECT id FROM user WHERE name=? AND hp=?";
+	            ps = conn.prepareStatement(query);
+	            ps.setString(1, name);
+	            ps.setString(2, hp);
+	            rs = ps.executeQuery();
+
+	            while (rs.next()) {
+	                // 검색 결과가 있을 때 MemberDTO 객체를 생성하여 resultList에 추가
+	                MemberDTO member = new MemberDTO();
+	                member.setId(rs.getString("id"));
+	                resultList.add(member);
+	            }
+
+	            if (resultList.isEmpty()) {
+	                // 검색 결과가 없는 경우에 대한 처리 (예: 적절한 메시지 설정)
+	                System.out.println("일치하는 아이디 없음");
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            conn.close();
+	            ps.close();
+	            rs.close();
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
+
+	    return resultList;
+	}
+	
+	// 비밀번호 찾기 
+	public String searchPw(String id, String name) {
+        conn = null;
+        ps = null;
+        rs = null;
+        String pw = null;
+
+        try {
+            conn = ds.getConnection();
+            String query = "SELECT pw FROM user WHERE id=? AND name=?";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            ps.setString(2, name);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                pw = rs.getString("pw");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+        return pw;
+    }
+	
 }

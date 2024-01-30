@@ -19,16 +19,25 @@ public class MemberServiceLogin implements MemberService{
 		String pw=request.getParameter("pw");
 		boolean tf=dao.MemberLogin(id, pw);
 		
-		System.out.print("로그인 테스트 결과: ");
-		if(tf==true) {
-			// 로그인 성공시 세션에 사용자 정보 저장
-			SessionUtil.setLoginId(request, id);	
-			System.out.println("로그인 성공.");
-		}
-		else {
-			System.out.println("로그인 실패.");
-		}
-		
+		if (tf) {
+            // 로그인 성공 시 세션에 사용자 정보 저장
+            SessionUtil.setLoginId(request, id);
+            System.out.println("로그인 성공.");
+            try {
+                // 로그인 성공 시 index.html 페이지로 리다이렉트
+                response.sendRedirect("index.html");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("로그인 실패.");
+            try {
+                // 로그인 실패 시 login.html 페이지로 리다이렉트
+            	response.sendRedirect("login.html");
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
 		return dto;
-	}
+    }
 }

@@ -1,45 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
-	<meta charset="UTF-8">
-	<title>회 원 가 입</title>
-	<style>
-		#signUp {
-			text-align: center;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입</title>
+    <style>
+        body {
+            font-family: 'G마켓 산스 Medium';
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007bff;
+        }
+    </style>
 </head>
 
 <body>
-	<h1 id="signUp"><b>회 원 가 입</b></h1>
-	<form action="insert.do" onsubmit="return emptyError();">
-		아이디 : <input type="text" name="id" id="id" />
-		<span class="error-message" id="id-error"></span> <br>
+    <form action="insert.do" onsubmit="return emptyError();">
+        <h1><b>회원 가입</b></h1>
+        아이디 <input type="text" name="id" id="id" />
+        <button type="button" onclick="fn_dbCheckId()" name="dbCheckId" class="checkId">중복확인</button>
+        <!-- 아이디 중복 체크 여부 -->
+        <input type="hidden" name="idDuplication" value="idUncheck"/>
+        <span class="error-message" id="id-error"></span> <br>
 
-		패스워드 : <input type="password" name="pw" id="pw">
-		<span class="error-message" id="pw-error"></span> <br>
+        비밀번호 <input type="password" name="pw" id="pw">
+        <span class="error-message" id="pw-error"></span> <br>
 
-		이름 : <input type="text" name="name" id="name">
-		<span class="error-message" id="name-error"></span> <br>
+        이름  <input type="text" name="name" id="name">
+        <span class="error-message" id="name-error"></span> <br>
 
-		핸드폰: <input type="tel" name="hp" id="hp"> (-제외하고입력해주세요)
-		<span class="error-message" id="hp-error"></span> <br>
+        휴대폰(-제외하고 입력해주세요) <input type="tel" name="hp" id="hp"> 
+        <span class="error-message" id="hp-error"></span> <br>
 
-		이메일 : <input type="text" name="email_id" id="email_id" class="form_w200" value="" title="이메일 아이디" /> @
-		<input type="text"  id="email_domain" class="form_w200" value="" title="이메일 도메인" />
-		<select class="select" id="email_domain" name="email_domain" title="이메일 도메인 주소 선택" onchange="setEmailDomain(this.value);">
-			<option value="custom">직접입력</option>
-			<option value="naver.com">naver.com</option>
-			<option value="gmail.com">gmail.com</option>
-			<option value="hanmail.net">hanmail.net</option>
-			<option value="google.com">google.com</option>
-			<option value="nate.com">nate.com</option>
+        이메일 : <input type="text" name="email_id" id="email_id" class="form_w200" value="" title="이메일 아이디" style="width:32%" /> @
+        <input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" style="width:32%" />
+        <select class="select" id="email_domain" name="email_domain" title="이메일 도메인 주소 선택" onchange="setEmailDomain(this.value);" style="width:20%">
+            <option value="custom">직접 입력</option>
+            <option value="naver.com">naver.com</option>
+            <option value="gmail.com">gmail.com</option>
+            <option value="hanmail.net">hanmail.net</option>
+            <option value="google.com">google.com</option>
+            <option value="nate.com">nate.com</option>
+        </select><br>
+        <span class="error-message" id="email-error"></span>
+        <input type="submit" value="가입 완료">
+    </form>
+</body>
 
-		</select><br>
-		<span class="error-message" id="email-error"></span>
-		<input type="submit" value="가입 완료">
-	</form>
+</html>
+
 
 	<!-- 회원가입할때 메소드들-->
 	<script>
@@ -67,7 +129,7 @@
 			let hpInput = document.getElementById("hp");
 			let emailIdInput = document.getElementById("email_id");
 			let emailDomainInput = document.getElementById("email_domain");
-			
+			let idDuplication = document.getElementsByName("idDuplication")[0].value;
 			
 
 			// 이메일 아이디와 도메인을 합쳐서 새로운 입력란에 저장
@@ -84,6 +146,11 @@
 				alert("아이디를 입력해주세요.");
 				return false;
 			}
+			
+			if (idDuplication !== 'idCheck') {
+        		alert("아이디 중복체크를 해주세요.");
+        		return false;
+    		}
 
 			if (!pwInput.value) {
 				alert("비밀번호를 입력해주세요.");
@@ -111,6 +178,46 @@
 
 			return true;
 		}
+		
+		function fn_dbCheckId() {
+            let id = document.getElementById("id");
+
+            if (!id || id.value.trim() === "") {
+                alert("아이디를 입력해주세요.");
+            } else {
+                // 중복 확인을 서블릿으로 진행
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // 서버로부터 응답을 받아 처리
+                            let result = xhr.responseText;
+
+                            if (result === "1") {
+                                alert("이미 사용 중인 아이디입니다.");
+                            } else if (result === "0") {
+                                alert("사용 가능한 아이디입니다.");
+
+                                // 중복 확인 결과를 감지하는 코드 추가
+                                let idDuplicationInput = document.getElementsByName("idDuplication")[0];
+                                idDuplicationInput.value = "idCheck";
+
+                                // 중복 확인 버튼 비활성화
+                                let dbCheckIdButton = document.getElementsByName("dbCheckId")[0];
+                                dbCheckIdButton.disabled = true;
+                                dbCheckIdButton.style.opacity = 0.6;
+                                dbCheckIdButton.style.cursor = "default";
+                            } else {
+                                alert("중복 확인 중 오류가 발생했습니다.");
+                            }
+                        }
+                    }
+                };
+
+                xhr.open("GET", 'checkID.do?id=' + encodeURIComponent(id.value), true);
+                xhr.send();
+            }
+        }
 
 	</script>
 
