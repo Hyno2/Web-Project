@@ -87,8 +87,8 @@
 
 		이메일 : <input type="text" name="email_id" id="email_id" class="form_w200" value="" title="이메일 아이디"
 			style="width:32%" /> @
-		<input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" style="width:32%" />
-		<select class="select" id="email_domain" name="email_domain" title="이메일 도메인 주소 선택"
+		<input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" style="width:32%" name="email_domain"/>
+		<select class="select" id="email_domain" name="" title="이메일 도메인 주소 선택"
 			onchange="setEmailDomain(this.value);" style="width:20%">
 			<option value="custom">직접 입력</option>
 			<option value="naver.com">naver.com</option>
@@ -107,15 +107,8 @@
 
 <!-- 회원가입할때 메소드들-->
 <script>
-	let firstLoad = true;
-
 	function setEmailDomain(select_Value) {
 		let emailDomainInput = document.getElementById("email_domain");
-
-		if (firstLoad) {
-			firstLoad = false;
-			return;
-		}
 
 		if (select_Value === "custom") {
 			emailDomainInput.disabled = false;
