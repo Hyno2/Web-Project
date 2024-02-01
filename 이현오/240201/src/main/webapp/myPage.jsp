@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.javalex.ex.Session.SessionUtil" %>
-<%@ page import="com.javalex.ex.DAO.MemberDAO" %>
-<%@ page import="com.javalex.ex.DTO.MemberDTO" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="com.javalex.ex.Session.SessionUtil"%>
+<%@ page import="com.javalex.ex.DAO.MemberDAO"%>
+<%@ page import="com.javalex.ex.DTO.MemberDTO"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 <title>My page</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<meta name="author" content="">	
+<meta name="author" content="">
 <!-- bootstrap css -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <!-- style css -->
@@ -29,58 +30,124 @@
 <!-- Scrollbar Custom CSS -->
 <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 <!-- Tweaks for older IEs-->
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<!-- owl stylesheets --> 
+<link rel="stylesheet"
+	href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- owl stylesheets -->
 <link rel="stylesheet" href="css/owl.carousel.min.css">
 <link rel="stylesoeet" href="css/owl.theme.default.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+	media="screen">
+<style>
+.form_group {
+	font-family: 'G마켓 산스 Medium';
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 150px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 30px;
+	box-sizing: border-box;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
+	{
+	background-color: #28d0ff;
+}
+
+.form_group .text-right {
+	text-align: right;
+	margin-top: 10px;
+}
+
+.form_group .btn-danger {
+	background-color: #dc3545;
+	color: #fff;
+	border: none;
+	padding: 10px 15px;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.form_group .btn-danger:hover {
+	background-color: #c82333;
+}
+</style>
 
 </head>
 <body>
 	<!-- header section start-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="logo" href="#"><img src="images/klogo.jpg"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="index.jsp">홈</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="search_jobs.jsp">채용정보</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="recurments.jsp">채용직별 구인</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="companies.jsp">기업정보</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="services.jsp">커리어상담</a>
-             </li>
-         
-            </ul>
-        </div>
-         <!-- 로그인 상태에 따라 다른 링크를 출력 -->
-                    <% if (SessionUtil.checkLogin(request)) { %>
-                     	<div class="login_text Last"><a href="select.do">마이페이지</a></div>
-                        <div class="login_text"><a href="logout.do">로그아웃</a></div>
-                    <% } else { %>
-                        <div class="login_text"><a href="login.jsp">로그인</a></div>
-                    <% } %>
-              
-    </nav>
+		<a class="logo" href="#"><img src="images/klogo.jpg"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="index.jsp">홈</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="search_jobs.jsp">채용정보</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용직별
+						구인</a></li>
+				<li class="nav-item"><a class="nav-link" href="companies.jsp">기업정보</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="services.jsp">커리어상담</a>
+				</li>
+
+			</ul>
+		</div>
+		<!-- 로그인 상태에 따라 다른 링크를 출력 -->
+		<% if (SessionUtil.checkLogin(request)) { %>
+		<div class="login_text Last">
+			<a href="select.do">마이페이지</a>
+		</div>
+		<div class="login_text">
+			<a href="logout.do">로그아웃</a>
+		</div>
+		<% } else { %>
+		<div class="login_text">
+			<a href="login.jsp">로그인</a>
+		</div>
+		<% } %>
+
+	</nav>
 	<!-- header section start-->
 
 	<div class="services_section">
-        <div class="container">
-            <h1 class="services_text">나의 회원 정보</h1>
-        </div>
-    </div>
+		<div class="container">
+			<h1 class="services_text">나의 회원 정보</h1>
+		</div>
+	</div>
 
-<%
+	<%
     String userId = SessionUtil.getLoginId(request);
 
     if (userId != null) {
@@ -91,44 +158,45 @@
             MemberDTO user = userInfo.get(0);
 %>
 
+	<div class="form_group">
+		<form id="userInfoForm" action="update.do" method="post">
+			<input type="hidden" id="id" name="id" value="<%=user.getId()%>">
+			<label for="id">아이디:</label> <input type="text" id="id" name="id"
+				value="<%=user.getId()%>" disabled><br> <label for="pw">비밀번호:</label>
+			<input type="text" id="pw" name="pw" value="<%=user.getPw()%>"
+				disabled><br> <label for="name">이름:</label> <input
+				type="text" id="name" name="name" value="<%=user.getName()%>"
+				disabled><br> <label for="hp">폰번호:</label> <input
+				type="text" id="hp" name="hp" value="<%=user.getHp()%>" disabled><br>
 
-            <form id="userInfoForm" action="update.do" method="post">
-            	<input type="hidden" id="id" name="id" value="<%=user.getId()%>">
-                <label for="id">아이디:</label>
-                <input type="text" id="id" name="id" value="<%=user.getId()%>" disabled><br>
+			<label for="email">이메일:</label> <input type="text" id="email"
+				name="email" value="<%=user.getEmail()%>" disabled><br>
 
-                <label for="pw">비밀번호:</label>
-                <input type="text" id="pw" name="pw" value="<%=user.getPw()%>" disabled><br>
-
-                <label for="name">이름:</label>
-                <input type="text" id="name" name="name" value="<%=user.getName()%>" disabled><br>
-
-                <label for="hp">폰번호:</label>
-                <input type="text" id="hp" name="hp" value="<%=user.getHp()%>" disabled><br>
-
-                <label for="email">이메일:</label>
-                <input type="text" id="email" name="email" value="<%=user.getEmail()%>" disabled><br>
-
-                <input type="button" value="수정" onclick="enableEdit()">
-                <input type="submit" value="저장" style="display:none;">
-                <input type="button" value="취소" onclick="cancelEdit()" style="display:none;">
-                <br>
-            </form>
-            <a href="javascript:void(0);" onclick="confirmDelete('<%= user.getId() %>')">회원탈퇴</a>
+			<input type="button" value="수정" onclick="enableEdit()"> <input
+				type="submit" value="저장" style="display: none;"> <input
+				type="button" value="취소" onclick="cancelEdit()"
+				style="display: none;"> <br>
+		</form>
+		<div class="text-right">
+			<a href="javascript:void(0);"
+				onclick="confirmDelete('<%= user.getId() %>')"
+				class="btn btn-danger">회원탈퇴</a>
+		</div>
+	</div>
 
 
-			<!-- J -->
-			<script>
-    			function confirmDelete(userId) {
-        			var confirmResult = confirm("정말로 삭제하시겠습니까?");
-        			if (confirmResult) {
-            			// 예를 눌렀을 경우 userId를 delete.do에 전달
-            			window.location.href = "delete.do?id=" + userId;
-       			 }
-    			}
-			</script>
+	<!-- copyright section end-->
+	<script>
+             function confirmDelete(userId) {
+                 var confirmResult = confirm("정말로 삭제하시겠습니까?");
+                 if (confirmResult) {
+                     // 예를 눌렀을 경우 userId를 delete.do에 전달
+                     window.location.href = "delete.do?id=" + userId;
+                 }
+             }
+         </script>
 
-            <script>
+	<script>
                 function enableEdit() {
                     // 아이디를 제외한 다른 입력란만 활성화
                     document.getElementById("pw").disabled = false;
@@ -161,19 +229,51 @@
                     document.querySelector('input[value="취소"]').style.display = 'none';
                 }
             </script>
-<%
+	<%
         }
     }
 %>
-<%
+	<%
     // updateSuccess 파라미터가 true일 경우에만 알림창을 띄움
     String updateSuccess = request.getParameter("updateSuccess");
     if ("true".equals(updateSuccess)) {
 %>
-<script>
+	<script>
     alert("수정이 완료되었습니다.");
 </script>
-<%
+	<%
     }
 %>
+
+	<!-- footer section start-->
+	<div class="footer_section layout_padding">
+		<div class="container">
+			<h1 class="subscribr_text">구직정보 알림받기</h1>
+			<p class="lorem_text">회원가입 없이도 구직정보를 받고싶으시다면 이메일을 입력해 주세요.</p>
+			<div class="box_main_2">
+				<form action="guest.do" method="post">
+					<input type="text" class="email_bt_2"
+						placeholder="Enter Your Email" name="guestEmail" id="guestEmail">
+
+					<input type="submit" value="입력" class="subscribe_bt_2">
+				</form>
+			</div>
+		</div>
+		<!-- footer section end-->
+		<!-- copyright section start-->
+		<div class="copyright_section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p class="copyright_text">
+							Copyright 2024 All Right Reserved By AI TEAM 2.<a
+								href="http://www.kb.or.kr/">경북산업직업전문학교</a>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<p class="cookies_text"></p>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>

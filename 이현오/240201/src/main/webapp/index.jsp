@@ -171,9 +171,13 @@
 			<h1 class="subscribr_text">구직정보 알림받기</h1>
 			<p class="lorem_text">회원가입 없이도 구직정보를 받고싶으시다면 이메일을 입력해 주세요. </p>
 			<div class="box_main_2">
-			    <textarea type="" class="email_bt_2" placeholder="Enter Your Email" name=""></textarea>
-		    </div>
-		    <button class="subscribe_bt_2"><a href="#">이메일주소입력</a></button>
+			    <form action="guest.do" method="post">
+			    <input type="text" class="email_bt_2" placeholder="Enter Your Email" name="guestEmail" id="guestEmail"> 
+		     
+		    <input type="submit" value="입력" class="subscribe_bt_2">
+		    	</form>
+		   		 </div>
+		   
 		</div>
 	</div>
 	<!-- footer section end-->

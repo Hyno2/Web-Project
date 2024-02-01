@@ -1,14 +1,26 @@
 package com.javalex.ex.DTO;
 
 public class MemberDTO {
-	// 멤버변수 (필드)
+	// user 테이블 멤버변수 (필드)
 	private String id;
 	private String pw;
 	private String name;
 	private String hp;
 	private String email;
 	
-	// getter setter
+	// guest 테이블 멤버변수 (필드)
+	private String guestEmail;
+	
+	// guest 테이블 getter setter
+	public String getGuestEmail() {
+		return guestEmail;
+	}
+	public void setGuestEmail(String guestEmail) {
+		this.guestEmail = guestEmail;
+	}
+	
+	
+	// user 테이블 getter setter
 	public String getId() {
 		return id;
 	}

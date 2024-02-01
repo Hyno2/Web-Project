@@ -71,7 +71,7 @@ public class CommandController extends HttpServlet {
 		// 인터페이스 초기화 초기화로 늘 실행됨으로 꼬이는일이 적어짐
 		MemberService mService = null; 
 		
-		// 회원가입.do
+		// 회원가입
 		if (command.equals("/insert.do")) { 
 			System.out.println("<회원 추가>를 수행합니다.");
 			// MemberServiceInsert() 클래스
@@ -161,6 +161,16 @@ public class CommandController extends HttpServlet {
 		    // 리다이렉트를 사용하여 다시 myPage.jsp로 이동
 		    response.sendRedirect("myPage.jsp?updateSuccess=true");
 		}
+		
+		// 게스트 이메일 저장
+				if (command.equals("/guest.do")) { 
+					System.out.println("<게스트 이메일 추가>를 수행합니다.");
+					// MemberServiceGuest() 클래스
+					mService = new MemberServiceGuest();
+					// 회원 가입 후 로그인 페이지로 리다이렉트
+					response.sendRedirect("index.jsp");
+				}
+				
 
 		mService.execute(request, response);
 

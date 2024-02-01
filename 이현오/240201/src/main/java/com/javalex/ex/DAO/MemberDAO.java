@@ -343,4 +343,42 @@ public class MemberDAO {
 			}
 		}
 	}
+	// 게스트 이메일 저장하는 메소드
+	public void GuestInsert(String guestEmail) {
+		conn = null;
+		ps = null;
+
+		try {
+			// DB 연결
+			conn = ds.getConnection();
+
+			// 게스트 이메일 INSERT 구문 수행
+			String query = "INSERT INTO guest VALUES (?)";
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, guestEmail);
+
+			// DB에 쿼리문 업데이트
+			ps.executeUpdate();
+			
+			// 예외 처리
+		} catch (Exception e) {
+			System.out.println("Insert 쿼리 수행 실패");
+			e.printStackTrace();
+		} finally {
+			try {
+				// 객체를 닫아서 초기화시켜줘야 꼬임 방지
+				ps.close();
+				conn.close();
+			} catch (Exception e2) {
+				System.out.println("객체 닫기 실패");
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
+	
 }
