@@ -251,11 +251,12 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 			<h1 class="subscribr_text">구직정보 알림받기</h1>
 			<p class="lorem_text">회원가입 없이도 구직정보를 받고싶으시다면 이메일을 입력해 주세요.</p>
 			<div class="box_main_2">
-				<form action="guest.do" method="post">
+				<form action="guest.do" method="post" >
 					<input type="text" class="email_bt_2"
 						placeholder="Enter Your Email" name="guestEmail" id="guestEmail">
 
 					<input type="submit" value="입력" class="subscribe_bt_2">
+					
 				</form>
 			</div>
 		</div>
@@ -276,4 +277,5 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 				</div>
 			</div>
 		</div>
+	
 </body>

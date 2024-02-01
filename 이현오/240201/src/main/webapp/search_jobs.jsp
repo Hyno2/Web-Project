@@ -97,15 +97,13 @@
 							<input type="text" class="form-control"
 								placeholder="Search this blog">
 							<div class="input-group-append">
-								<button class="btn btn-secondary" type="button">
-									<i class="fa fa-search"></i>
-								</button>
+								
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<h1 class="what_text">집주변 직장을 구하고 있나요?</h1>
+					<h1 class="what_text">대구 경북 직장을 구하고 있나요?</h1>
 					<p class="city_text">지역조회를 통해 주변에 어떤 직장이 있는지 알아보세요.</p>
 					<div>
 						<div class="main">
@@ -113,9 +111,7 @@
 								<input type="text" class="form-control"
 									placeholder="Ahmedabad, Gujarat">
 								<div class="input-group-append">
-									<button class="btn btn-secondary" type="button">
-										<i class="fa fa-map-marker"></i>
-									</button>
+									
 								</div>
 							</div>
 						</div>
