@@ -40,7 +40,7 @@
 <body>
 	<!-- header section start-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="logo" href="#"><img src="images/klogo.jpg"></a>
+		<a class="logo" href="index.jsp"><img src="images/klogo.jpg"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -50,14 +50,12 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="search_jobs.jsp">채용정보</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용직별
-						구인</a></li>
+				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용정보</a></li>
 				<li class="nav-item"><a class="nav-link" href="companies.jsp">기업정보</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="services.jsp">커리어상담</a>
 				</li>
+
 			</ul>
 		</div>
 		<!-- 로그인 상태에 따라 다른 링크를 출력 -->
@@ -185,7 +183,25 @@
 		<script src="js/owl.carousel.js"></script>
 		<script
 			src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-		<script src="js/loginAlert.js"></script>
+		
 		<script src="js/guestAlert.js"></script>
+		 <script>
+		 $(document).ready(function(){
+      $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+      // 로그인 실패했을때
+      var loginError = '<%= request.getParameter("loginError") %>';
+      if (loginError === "true") {
+          alert("입력하신 정보가 올바르지 않습니다.");
+      }
+   		// 로그아웃 성공 시에만 alert 표시
+      var logoutSuccess = '<%= request.getParameter("logoutSuccess") %>';
+      if (logoutSuccess === "true") {
+          alert("로그아웃되었습니다.");
+      }
+      });
+		 </script>
 </body>
 </html>

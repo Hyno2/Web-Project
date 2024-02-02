@@ -40,7 +40,7 @@
 <body>
 	<!-- header section start-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="logo" href="#"><img src="images/klogo.jpg"></a>
+		<a class="logo" href="index.jsp"><img src="images/klogo.jpg"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +50,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="search_jobs.jsp">채용정보</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용직별
-						구인</a></li>
+				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용정보</a></li>
 				<li class="nav-item"><a class="nav-link" href="companies.jsp">기업정보</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="services.jsp">커리어상담</a>
@@ -85,17 +82,24 @@
 	<!-- Recurments  section start-->
 	<div class="services_section">
 		<div class="container">
-			<h1 class="services_text">직종별 구인구직</h1>
+			<h1 class="services_text">채용 정보 리스트</h1>
 		</div>
 	</div>
-	<div class="Recurments_section"></div>
+	<div class="services_section_2 layout_padding">
+		<div class="container">
+			<h1 class="companies_text">채용 정보</h1>
+			<div class="services_item ">
+				<div class="row"></div>
+			</div>
+		</div>
+	</div>
 	<div class="Recurments_section_2">
 		<div class="container">
 			<div class="product_section">
 				<div class="row padding_top_0">
 					<div class="col-sm-2">
 						<div class="one_text">
-							<a href="#" class="active">01</a>
+							<a href="#">01</a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -103,8 +107,7 @@
 						<p class="lorem_ipsum_text">주로 고객에게 서비스를 제공하거나, 판매를 하는 일</p>
 					</div>
 					<div class="col-sm-2">
-						<button class="apply_now"
-							onclick="window.location.href='https://www.saramin.co.kr/zf_user/search?search_area=main&search_done=y&search_optional_item=n&loc_mcd=104000%2C111000&cat_kewd=647%2C1401%2C1635%2C401%2C634%2C938%2C655%2C660%2C706%2C713%2C732%2C1263%2C1230'">지원하기</button>
+						<button class="apply_now">채용정보보기</button>
 					</div>
 				</div>
 			</div>
@@ -123,7 +126,7 @@
 							<p class="lorem_ipsum_text">공정,제조 및 건설을 하는 일</p>
 						</div>
 						<div class="col-sm-2">
-							<button class="apply_now">지원하기</button>
+							<button class="apply_now">채용정보보기</button>
 						</div>
 					</div>
 				</div>
@@ -142,7 +145,7 @@
 								<p class="lorem_ipsum_text">행정,사무 및 전문기술을 가지고 하는 일</p>
 							</div>
 							<div class="col-sm-2">
-								<button class="apply_now">지원하기</button>
+								<button class="apply_now">채용정보보기</button>
 							</div>
 						</div>
 					</div>
@@ -161,7 +164,7 @@
 									<p class="lorem_ipsum_text">사람을 교육 및 의료서비스를 제공하는 일</p>
 								</div>
 								<div class="col-sm-2">
-									<button class="apply_now">지원하기</button>
+									<button class="apply_now">채용정보보기</button>
 								</div>
 							</div>
 						</div>
@@ -216,7 +219,22 @@
 					<script src="js/owl.carousel.js"></script>
 					<script
 						src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-					<script src="js/logoutAlert.js"></script>
+					
 					<script src="js/guestAlert.js"></script>
+					<script>
+		$(document).ready(function(){
+		      $(".fancybox").fancybox({
+		         openEffect: "none",
+		         closeEffect: "none"
+		         });
+		      // 로그아웃 성공 시에만 alert 표시
+		      var logoutSuccess = '<%= request.getParameter("logoutSuccess") %>';
+		      if (logoutSuccess === "true") {
+		          alert("로그아웃되었습니다.");
+		      }
+		      });
+		        
+		
+		</script>
 </body>
 </html>

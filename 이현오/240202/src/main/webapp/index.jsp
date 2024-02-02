@@ -43,7 +43,7 @@
 <body>
 	<!-- header section start-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="logo" href="#"><img src="images/klogo.jpg"></a>
+		<a class="logo" href="index.jsp"><img src="images/klogo.jpg"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -53,10 +53,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="search_jobs.jsp">채용정보</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용직별
-						구인</a></li>
+				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용정보</a></li>
 				<li class="nav-item"><a class="nav-link" href="companies.jsp">기업정보</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="services.jsp">커리어상담</a>
@@ -89,16 +86,21 @@
 	<!-- banner section start-->
 	<div class="banner_section layout_padding">
 		<div class="container">
+		
 			<h1 class="best_taital">대구·경북 최고의 구직 플랫폼</h1>
 			<div class="box_main">
 				<!-- day0122 수정 검색할 때 결과가 사람인 페이지로 전달-->
 				<!--  <input type="" class="email_bt" placeholder="Search Job" name="">-->
+				<div>
+				<h1 class="what_text">어떤 종류의 직업을 원하시나요?</h1>
+					<p class="city_text">원하는 직업군을 검색해보세요.</p>
+				
 				<input type="text" id="search_result"
 					onkeyup="if(window.event.keyCode==13){search()}" class="email_bt"
 					placeholder="Search Job">
 				<button class="subscribe_bt" onclick="search()">검색하기</button>
 				<!-- <button class="subscribe_bt"><a href="https://www.saramin.co.kr/zf_user/">검색하기</a></button> -->
-
+</div>
 			</div>
 			<p class="there_text">나에게 딱 맞는 커리어만 매치! 경북인에서 새로운 기회를 제안 받고 기업정보,
 				연봉정보, 면접후기 등 취업, 채용에 꼭 필요한 정보를 확인해보세요.</p>
@@ -117,7 +119,9 @@
 							서비스나 제품 판매를 중심으로 하는 산업입니다. 이 분야는 다양한 업종과 직종으로 이루어져 있으며, 소비자와 직접
 							상호 작용하는 산업군을 포함합니다.</p>
 						<div class="apply_bt">
-							<a href="#">지원하기</a>
+							<a href="#" 
+							onclick="serviceAndSellSearch()">
+							지원하기</a>
 						</div>
 					</div>
 				</div>
@@ -146,7 +150,7 @@
 							물리적인 제품이나 시설물을 만들어내는 활동을 포함합니다. 이 산업은 다양한 종류의 제조업과 건설업으로 나뉘며, 각각의
 							분야에서 다양한 직종이 존재합니다.</p>
 						<div class="apply_bt">
-							<a href="#">지원하기</a>
+							<a href="#" onclick="manufactAndconstructSearch()">지원하기</a>
 						</div>
 					</div>
 				</div>
@@ -165,7 +169,7 @@
 							서비스를 제공하는 업종들을 포함합니다. 이러한 분야는 다양한 직종이 있으며, 컴퓨터 및 기술을 활용하여 업무를
 							수행합니다.</p>
 						<div class="apply_bt">
-							<a href="#">지원하기</a>
+							<a href="#" onclick="officeAndproSearch()">지원하기</a>
 						</div>
 					</div>
 				</div>
@@ -193,7 +197,7 @@
 						<p class="dummy_text">교육 및 의료업은 사회적으로 중요하며, 인간의 교육과 건강을 총괄하는
 							분야입니다. 각 분야는 전문적인 서비스와 다양한 직종들로 구성되어 있습니다.</p>
 						<div class="apply_bt">
-							<a href="#">지원하기</a>
+							<a href="#" onclick="eduAndmediSearch()">지원하기</a>
 						</div>
 					</div>
 				</div>
@@ -239,6 +243,7 @@
 
 
 	<!-- Javascript files-->
+	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
@@ -252,9 +257,19 @@
 	<script src="js/owl.carousel.js"></script>
 	<script
 		src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-	<script src="js/logoutAlert.js"></script>
+	
 	<script src="js/guestAlert.js"></script>
-
+	<script>
+	 // 로그아웃 alert 띄우는 기능
+	 document.addEventListener("DOMContentLoaded", function () {
+	    // 로그아웃 성공 시에만 alert 표시
+	    var logoutSuccess = '<%= request.getParameter("logoutSuccess") %>';
+	    if (logoutSuccess === "true") {
+	      alert("로그아웃되었습니다.");
+	    }
+	  });
+	
+	</script>
 
 </body>
 </html>
