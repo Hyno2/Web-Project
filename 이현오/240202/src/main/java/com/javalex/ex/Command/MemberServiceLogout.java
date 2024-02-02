@@ -19,6 +19,7 @@ public class MemberServiceLogout implements MemberService {
 	    try {
 	    	// 세션이 겹치는 경우가있어 리다이렉트를 안쓰고 이동하는 js코드 사용
 	        response.getWriter().print(redirectScript);
+	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

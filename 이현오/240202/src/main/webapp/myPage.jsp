@@ -103,7 +103,7 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 <body>
 	<!-- header section start-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="logo" href="#"><img src="images/klogo.jpg"></a>
+		<a class="logo" href="index.jsp"><img src="images/klogo.jpg"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -113,10 +113,7 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="search_jobs.jsp">채용정보</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용직별
-						구인</a></li>
+				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용정보</a></li>
 				<li class="nav-item"><a class="nav-link" href="companies.jsp">기업정보</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="services.jsp">커리어상담</a>
@@ -146,13 +143,6 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 
 	</nav>
 	<!-- header section start-->
-
-	<div class="services_section">
-		<div class="container">
-			<h1 class="services_text">나의 회원 정보</h1>
-		</div>
-	</div>
-
 	<%
 	String userId = SessionUtil.getLoginId(request);
 
@@ -163,6 +153,23 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 		if (!userInfo.isEmpty()) {
 			MemberDTO user = userInfo.get(0);
 	%>
+
+	<div class="services_section">
+		<div class="container">
+			<h1 class="services_text">나의 회원 정보</h1>
+		</div>
+	</div>
+
+	<div class="services_section_2 layout_padding">
+		<div class="container">
+			<h1 class="companies_text">마이페이지</h1>
+			<div class="services_item ">
+				<div class="row"></div>
+			</div>
+		</div>
+	</div>
+
+
 
 	<div class="form_group">
 		<form id="userInfoForm" action="update.do" method="post">
@@ -185,8 +192,7 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 		</form>
 		<div class="text-right">
 			<a href="javascript:void(0);"
-				onclick="confirmDelete('<%=user.getId()%>')"
-				class="btn btn-danger">회원탈퇴</a>
+				onclick="confirmDelete('<%=user.getId()%>')" class="btn btn-danger">회원탈퇴</a>
 		</div>
 	</div>
 
@@ -286,8 +292,35 @@ input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hove
 	<%
 	}
 	%>
+	<!-- 로그아웃 부분 -->
+	<script>
+		$(document).ready(function(){
+		      $(".fancybox").fancybox({
+		         openEffect: "none",
+		         closeEffect: "none"
+		         });
+		      // 로그아웃 성공 시에만 alert 표시
+		      var logoutSuccess = '<%= request.getParameter("logoutSuccess") %>';
+		      if (logoutSuccess === "true") {
+		          alert("로그아웃되었습니다.");
+		      }
+		      });
+		        
+		
+		</script>
 
-<script src="js/guestAlert.js"></script>
+	<script src="js/guestAlert.js"></script>
+	<script>
+	 // 로그아웃 alert 띄우는 기능
+	 document.addEventListener("DOMContentLoaded", function () {
+	    // 로그아웃 성공 시에만 alert 표시
+	    var logoutSuccess = '<%= request.getParameter("logoutSuccess") %>';
+	    if (logoutSuccess === "true") {
+	      alert("로그아웃되었습니다.");
+	    }
+	  });
+	
+	</script>
 
 
 </body>
