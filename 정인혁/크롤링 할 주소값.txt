@@ -1,0 +1,13 @@
+서비스 및 판매업
+https://www.saramin.co.kr/zf_user/search?search_area=main&search_done=y&search_optional_item=n&loc_mcd=104000%2C111000&cat_kewd=647%2C1401%2C1635%2C401%2C634%2C938%2C655%2C660%2C706%2C713%2C732%2C1263%2C1230
+
+제조 및 건설업
+https://www.saramin.co.kr/zf_user/search?loc_mcd=104000%2C111000&cat_mcls=22&company_cd=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C9%2C10&panel_type=&search_optional_item=y&search_done=y&panel_count=y&preview=y
+
+사무 및 전문직
+https://www.saramin.co.kr/zf_user/search?loc_mcd=104000%2C111000&company_cd=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C9%2C10&cat_mcls=4%2C3&panel_type=&search_optional_item=y&search_done=y&panel_count=y&preview=y
+
+교욱 및 의료
+https://www.saramin.co.kr/zf_user/search?loc_mcd=104000%2C111000&company_cd=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C9%2C10&cat_mcls=6%2C19&panel_type=&search_optional_item=y&search_done=y&panel_count=y&preview=y
+
+크롤링 할 주소값
