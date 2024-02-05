@@ -91,3 +91,13 @@
 </body>
 </html>
 
+
+
+
+// 채용정보보기 버튼 클릭 시 토글
+            for (var i = 0; i < <%= titles.size() %>; i++) {
+                $("#infoBtn" + i).click(function(){
+                    var index = $(this).attr("id").replace("infoBtn", "");
+                    $("#infoText" + index).toggle();
+                });
+            }
