@@ -50,9 +50,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">홈</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="search_jobs.jsp">채용정보</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용직별구인</a>
+				<li class="nav-item"><a class="nav-link" href="recurments.jsp">채용정보</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="companies.jsp">기업정보</a>
 				</li>

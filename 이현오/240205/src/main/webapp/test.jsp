@@ -18,7 +18,7 @@
 
     <%
         // 크롤링할 URL
-        String url = "https://www.saramin.co.kr/zf_user/search?search_area=main&search_done=y&search_optional_item=n&loc_mcd=104000%2C111000&cat_kewd=647%2C1401%2C1635%2C401%2C634%2C938%2C655%2C660%2C706%2C713%2C732%2C1263%2C1230";
+        String url = "https://www.saramin.co.kr/zf_user/search?company_cd=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C9%2C10&loc_mcd=104000%2C111000&panel_type=&search_optional_item=y&search_done=y&panel_count=y&preview=y";
 
         // JSoup을 사용하여 웹 페이지 가져오기
         Document doc = Jsoup.connect(url).get();
@@ -61,7 +61,7 @@
         <th>기업URL</th>
     </tr>
 
-    <% for (int i = 0; i < 13; i++) { %>
+    <% for (int i = 0; i < titles.size(); i++) { %>
         <tr>
             <td><%= i + 1 %></td>
             <td><%= titles.get(i) %></td>
