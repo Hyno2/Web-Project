@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원 가입</title>
+	<style>
+        body {
+            font-family: 'G마켓 산스 Medium';
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        input[type="submit"] {
+           font-family: 'G마켓 산스 Medium';
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007bff;
+        }
+        
+        .checkId {
+          font-family: 'G마켓 산스 Medium';
+          background-color: #007bff;
+          color: #fff;
+          padding: 10px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-bottom: 15px;
+      }
+
+      .checkId:hover {
+          background-color: #28d0ff;
+      }
+
+        
+    </style>
+</head>
+
+<body>
+	<form action="insert.do" onsubmit="return emptyError();">
+		<h1><b>회원 가입</b></h1>
+		아이디 <input type="text" name="id" id="id" style="margin-bottom: 10px;" />
+		<div style="display: flex; justify-content: flex-end; width: 100%;"> <!-- 부모 요소에 스타일 추가 -->
+		<button type="button" onclick="fn_dbCheckId()" name="dbCheckId" class="checkId">중복확인</button>
+		</div>
+		<!-- 아이디 중복 체크 여부 -->
+		<input type="hidden" name="idDuplication" value="idUncheck" />
+		<span class="error-message" id="id-error"></span> <br>
+
+		비밀번호 <input type="password" name="pw" id="pw">
+		<span class="error-message" id="pw-error"></span> <br>
+
+		이름 <input type="text" name="name" id="name">
+		<span class="error-message" id="name-error"></span> <br>
+
+		휴대폰(-제외하고 입력해주세요) <input type="tel" name="hp" id="hp">
+		<span class="error-message" id="hp-error"></span> <br>
+
+		이메일 : <input type="text" name="email_id" id="email_id" class="form_w200" value="" title="이메일 아이디"
+			style="width:32%" /> @
+		<input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" style="width:32%" name="email_domain"/>
+		<select class="select" id="email_domain" name="" title="이메일 도메인 주소 선택"
+			onchange="setEmailDomain(this.value);" style="width:20.5%">
+			<option value="custom">직접 입력</option>
+			<option value="naver.com">naver.com</option>
+			<option value="gmail.com">gmail.com</option>
+			<option value="hanmail.net">hanmail.net</option>
+			<option value="google.com">google.com</option>
+			<option value="nate.com">nate.com</option>
+		</select><br>
+		<span class="error-message" id="email-error"></span>
+		<input type="submit" value="가입 완료">
+	</form>
+	
+	<!-- JavaScript Section-->
+<script src="js/signUp.js"></script>
+
+</body>
+
+</html>
