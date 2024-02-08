@@ -1,0 +1,3 @@
+saveCropNameToCSV(saraminCrawlCorp, imgUrls, "D:\\LJK\\WorkJSP\\Web_Project\\src\\main\\webapp\\CSV\\CorpName.csv");
+
+이 부분의 절대경로를 자신의 경로에 맞게 수정이 필요
