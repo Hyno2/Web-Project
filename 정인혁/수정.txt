@@ -1,0 +1,60 @@
+	<script>
+    function enableEdit() {
+        // 아이디를 제외한 다른 입력란만 활성화
+        document.getElementById("pw").disabled = false;
+        document.getElementById("name").disabled = false;
+        document.getElementById("hp").disabled = false;
+        document.getElementById("email").disabled = false;
+
+        // "수정" 버튼 숨기고 "저장"과 "취소" 버튼 표시
+        var editButton = document.querySelector('input[value="수정"]');
+        var saveButton = document.querySelector('input[value="저장"]');
+        var cancelButton = document.querySelector('input[value="취소"]');
+
+        editButton.style.display = 'none';
+        saveButton.style.display = 'inline';
+        cancelButton.style.display = 'inline';
+    }
+
+    function cancelEdit() {
+        // 폼의 입력 상태를 초기화하고 disabled 상태로 돌아감
+        document.getElementById("pw").value = "<%=user.getPw()%>";
+        document.getElementById("name").value = "<%=user.getName()%>";
+        document.getElementById("hp").value = "<%=user.getHp()%>";
+        document.getElementById("email").value = "<%=user.getEmail()%>";
+
+        // 모든 입력란을 다시 disabled 상태로 변경
+        document.getElementById("pw").disabled = true;
+        document.getElementById("name").disabled = true;
+        document.getElementById("hp").disabled = true;
+        document.getElementById("email").disabled = true;
+
+        // "수정" 버튼과 "저장", "취소" 버튼 순서대로 표시
+        var editButton = document.querySelector('input[value="수정"]');
+        var saveButton = document.querySelector('input[value="저장"]');
+        var cancelButton = document.querySelector('input[value="취소"]');
+
+        editButton.style.display = 'inline';
+        saveButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+    }
+</script>
+
+
+
+<%
+// 이 코드는 JSP 페이지 상단에 위치해야 합니다.
+
+// 세션이 없거나 로그인되어 있지 않으면 경고창을 띄우고 로그인 페이지로 이동합니다.
+if(SessionUtil.checkLogin(request) == false) {
+    // JavaScript를 사용하여 경고창을 표시하고 페이지를 이동합니다.
+%>
+    <script type="text/javascript">
+        alert("로그인이 필요한 서비스입니다.");
+        window.location.href = "login.jsp";
+    </script>
+<%
+    // 이후의 코드는 실행되지 않습니다.
+    return;
+}
+%>
