@@ -126,6 +126,9 @@ ol {
      padding: 0px;
      list-style: none;
 }
+ul[id="nav_set"] li{
+     float:left;
+}
 
 p {
      margin: 20px;

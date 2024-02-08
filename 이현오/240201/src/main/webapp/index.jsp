@@ -66,8 +66,14 @@
         </div>
                     <!-- 로그인 상태에 따라 다른 링크를 출력 -->
                     <% if (SessionUtil.checkLogin(request)) { %>
-                     	<div class="login_text Last"><a href="select.do">마이페이지</a></div>
-                        <div class="login_text"><a href="logout.do">로그아웃</a></div>
+						<ul id="nav_set">
+							<li>
+								<div class="login_text Last"><a href="select.do">마이페이지</a></div>
+							</li>
+							<li>
+								<div class="login_text"><a href="logout.do">로그아웃</a></div>
+							</li>
+						</ul>
                     <% } else { %>
                         <div class="login_text"><a href="login.jsp">로그인</a></div>
                     <% } %>
